@@ -4,7 +4,6 @@ La idea de este proyecto fue armar una aplicación web que permita que los clien
 
 La app está hecha con Flask, usa SQLite como base de datos y está organizada con blueprints. Además, se agregó login con Google como integración externa.
 
--
 
 # Funcionalidades principales
 
@@ -35,7 +34,7 @@ Las variables de Google y la secret key se cargan desde `.env` para no dejar dat
 
 La estructura principal es la siguiente:
 
--healthy_bite/
+healthy_bite/
 auth/ → rutas de login, logout y Google Auth
 
 clientes/ → rutas y vistas del cliente
@@ -62,27 +61,27 @@ Procfile
 # Cómo ejecutar el proyecto localmente
 -Clonar el repositorio desde GitHub.
 
--Crear un entorno virtual.
+- Crear un entorno virtual.
  En Windows, por ejemplo:
  py -m venv .venv
 
--Activar el entorno virtual.
+- Activar el entorno virtual.
 Windows: .venv\Scripts\activate
 Instalar las dependencias:
 pip install -r requirements.txt
 
--Crear un archivo .env en la raíz del proyecto con las variables:
+- Crear un archivo .env en la raíz del proyecto con las variables:
  SECRET_KEY=tu_clave
  GOOGLE_CLIENT_ID=tu_id
  GOOGLE_CLIENT_SECRET=tu_secret
  GOOGLE_REDIRECT_URI=http://localhost:5000/login_google/callback
 
 
--Ejecutar la aplicación:
+- Ejecutar la aplicación:
  py run.py
 
 
--La aplicación arranca en:
+- La aplicación arranca en:
  http://localhost:5000
 
 
@@ -94,9 +93,9 @@ La base de datos SQLite se genera automáticamente si no existe.
 
 # Dependencias principales
 
--Flask
--gunicorn
--google-auth-oauthlib
--python-dotenv
--requests
--sqlite3
+- Flask
+- gunicorn
+- google-auth-oauthlib
+- python-dotenv
+- requests
+- sqlite3
