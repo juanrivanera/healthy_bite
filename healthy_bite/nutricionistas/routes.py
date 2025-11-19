@@ -215,7 +215,8 @@ def recomendar(cliente_id):
             conn.commit()
             flash("Recomendación creada correctamente.")
             conn.close()
-            return redirect(url_for("nutricionistas.mis_recomendaciones"))
+            # Cambio acá: volvemos al menú del nutricionista
+            return redirect(url_for("nutricionistas.menu_nutricionista"))
 
     cur.execute("SELECT nombre FROM cliente WHERE id = ?", (cliente_id,))
     cli = cur.fetchone()
