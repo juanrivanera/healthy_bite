@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="section-title">Registro de Nutricionista</div>
+    <div class="form-card">
+        <form method="post">
+
+            <label>
+                Nombre:
+                <input type="text" name="nombre" required>
+            </label>
+
+            <label>
+                Email:
+                <input type="email" name="email" required>
+            </label>
+
+            <label>
+                Contraseña:
+                <input type="password" name="password" required>
+            </label>
+
+            <label>
+                Matrícula:
+                <input type="text" name="matricula" required>
+            </label>
+
+            <button type="submit">REGISTRARSE</button>
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

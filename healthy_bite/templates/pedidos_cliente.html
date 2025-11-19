@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="section-title">Platos disponibles</div>
+
+    <div class="planes-row">
+        {% for p in platos %}
+            <div class="plan-card">
+                <h3>{{ p.nombre }}</h3>
+                <p>{{ p.descripcion }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="card">
+    <div class="section-title">Tu pedido</div>
+
+    <div class="form-card">
+        <form method="post">
+            <label>
+                Plato:
+                <select name="plato_id" required>
+                    <option value="">Seleccioná un plato</option>
+                    {% for p in platos %}
+                        <option value="{{ p.id }}">{{ p.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <label>
+                Restricción dietética:
+                <input type="text" name="restriccion"
+                       placeholder="Sin sal, sin gluten, vegetariano, etc.">
+            </label>
+
+            <label>
+                Comentarios / preferencias:
+                <textarea name="comentarios" rows="3"
+                          placeholder="Ej: prefiero sin salsas, agregar más vegetales..."></textarea>
+            </label>
+
+            <button type="submit">Guardar pedido</button>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="section-title">Pedidos anteriores</div>
+
+    {% if pedidos %}
+        <table class="table-like">
+            <tr>
+                <th>Fecha</th>
+                <th>Plato</th>
+                <th>Restricción</th>
+                <th>Comentarios</th>
+                <th>Estado</th>
+            </tr>
+            {% for ped in pedidos %}
+                <tr>
+                    <td>{{ ped.fecha }}</td>
+                    <td>{{ ped.plato }}</td>
+                    <td>{{ ped.restriccion or "-" }}</td>
+                    <td>{{ ped.comentarios or "-" }}</td>
+                    <td>{{ ped.estado }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Todavía no registraste pedidos.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

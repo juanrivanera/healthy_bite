@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="section-title">Gestionar planes</div>
+
+    <div class="form-card">
+        <form method="post">
+            {% for p in planes %}
+                <fieldset style="margin-bottom: 15px;">
+                    <legend>Plan {{ p.id }}</legend>
+
+                    <label>
+                        Nombre:
+                        <input type="text" name="nombre_plan_{{ p.id }}" value="{{ p.nombre }}">
+                    </label>
+
+                    <label>
+                        Descripción:
+                        <textarea name="descripcion_plan_{{ p.id }}" rows="2">{{ p.descripcion }}</textarea>
+                    </label>
+
+                    <label>
+                        Precio:
+                        <input type="text" name="precio_plan_{{ p.id }}" value="{{ '%.2f'|format(p.precio) }}">
+                    </label>
+                </fieldset>
+            {% endfor %}
+
+            <button type="submit">Guardar cambios</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

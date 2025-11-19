@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="section-title">Clientes</div>
+
+    {% if clientes %}
+        <table class="table-like">
+            <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Deporte / actividad</th>
+                <th>Altura (cm)</th>
+                <th>Peso (kg)</th>
+                <th>Objetivo</th>
+                <th>Plan</th>
+                <th>Acciones</th>
+            </tr>
+            {% for c in clientes %}
+                <tr>
+                    <td>{{ c.nombre }}</td>
+                    <td>{{ c.email }}</td>
+                    <td>{{ c.disciplina or "-" }}</td>
+                    <td>{{ c.altura or "-" }}</td>
+                    <td>{{ c.peso or "-" }}</td>
+                    <td>{{ c.objetivo or "-" }}</td>
+                    <td>{{ c.plan or "Sin plan" }}</td>
+                    <td>
+                        <a href="{{ url_for('nutricionistas.recomendar', cliente_id=c.id) }}" class="button">
+                            Ver / recomendar
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay clientes registrados.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

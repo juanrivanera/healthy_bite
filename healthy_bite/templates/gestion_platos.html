@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="section-title">Gestionar platos</div>
+
+    <div class="form-card">
+        <form method="post">
+            {% for p in platos %}
+                <fieldset style="margin-bottom: 15px;">
+                    <legend>Plato {{ p.id }}</legend>
+
+                    <label>
+                        Nombre:
+                        <input type="text" name="nombre_{{ p.id }}" value="{{ p.nombre }}">
+                    </label>
+
+                    <label>
+                        Descripción:
+                        <textarea name="descripcion_{{ p.id }}" rows="2">{{ p.descripcion or "" }}</textarea>
+                    </label>
+                </fieldset>
+            {% endfor %}
+
+            <button type="submit">Guardar cambios</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

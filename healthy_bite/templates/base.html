@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Healthy Bite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="{{ url_for('main.home') }}">Inicio</a>
+        <a href="{{ url_for('main.planes') }}">Planes</a>
+
+        {% if session.get('tipo') == 'cliente' %}
+            <a href="{{ url_for('clientes.pedidos_cliente') }}">Pedidos</a>
+        {% elif session.get('tipo') == 'nutricionista' %}
+            <a href="{{ url_for('nutricionistas.pedidos_nutricionista') }}">Pedidos</a>
+        {% else %}
+            <a href="{{ url_for('auth.login_cliente') }}">Pedidos</a>
+        {% endif %}
+
+        {% if session.get('tipo') %}
+            {% if session.get('tipo') == 'cliente' %}
+                <a href="{{ url_for('clientes.menu_cliente') }}">Mi Cuenta</a>
+            {% else %}
+                <a href="{{ url_for('nutricionistas.menu_nutricionista') }}">Mi Cuenta</a>
+            {% endif %}
+        {% else %}
+            <a href="{{ url_for('auth.login_cliente') }}">Mi Cuenta</a>
+        {% endif %}
+    </div>
+
+    <div class="navbar-right">
+        {% if session.get('tipo') %}
+            {% if session.get('tipo') == 'cliente' %}
+                <span>{{ session.get('cliente_nombre') }}</span>
+            {% elif session.get('tipo') == 'nutricionista' %}
+                <span>{{ session.get('nutricionista_nombre') }}</span>
+            {% endif %}
+            <a href="{{ url_for('auth.logout') }}">Salir</a>
+        {% else %}
+            <a href="{{ url_for('auth.login_cliente') }}">Cliente</a>
+            <a href="{{ url_for('auth.login_nutricionista') }}">Nutricionista</a>
+        {% endif %}
+    </div>
+</nav>
+
+<div class="page-wrapper">
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flash-messages">
+          {% for m in messages %}
+            <li>{{ m }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+
+</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Nueva recomendación</h1>
+<p>Cliente: {{ cliente.nombre }} ({{ cliente.email }})</p>
+
+<form method="post">
+  <label>Texto de la recomendación:</label><br>
+  <textarea name="texto" rows="4" cols="50" required></textarea><br><br>
+
+  <button type="submit">Guardar recomendación</button>
+</form>
+{% endblock %}

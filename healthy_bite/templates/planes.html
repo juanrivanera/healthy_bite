@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="section-title">Nuestros Planes</div>
+
+    <div class="planes-row">
+        {% for p in planes %}
+            <div class="plan-card">
+                <div>
+                    <h3>{{ p.nombre }}</h3>
+                    <p><strong>${{ "%.2f"|format(p.precio or 0) }}</strong></p>
+                    <p>{{ p.descripcion }}</p>
+                </div>
+                <div style="margin-top: 15px; text-align: center;">
+                    {% if session.get('tipo') == 'nutricionista' %}
+                        <a href="{{ url_for('nutricionistas.gestion_planes') }}" class="button">
+                            EDITAR PLANES
+                        </a>
+                    {% elif session.get('tipo') == 'cliente' %}
+                        <a href="{{ url_for('clientes.elegir_plan', plan_id=p.id) }}" class="button">
+                            ELEGIR PLAN
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('auth.login_cliente') }}" class="button">
+                            ELEGIR PLAN
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <p>No hay planes cargados todavía.</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

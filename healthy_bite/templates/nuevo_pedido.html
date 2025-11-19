@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Nuevo pedido</h1>
+
+<form method="post">
+  <label>Plan:</label><br>
+  <select name="plan_id">
+    <option value="">(No cambiar plan)</option>
+    {% for p in planes %}
+      <option value="{{ p.id }}">{{ p.nombre }} - ${{ p.precio }}</option>
+    {% endfor %}
+  </select><br><br>
+
+  <label>Producto:</label><br>
+  <select name="producto_id">
+    {% for prod in productos %}
+      <option value="{{ prod.id }}">
+        {{ prod.nombre }} ({{ prod.calorias }} kcal) - Alergenos: {{ prod.alergenos or 'N/A' }}
+      </option>
+    {% endfor %}
+  </select><br><br>
+
+  <label>Cantidad:</label><br>
+  <input type="number" name="cantidad" value="1" min="1"><br><br>
+
+  <button type="submit">Confirmar pedido</button>
+</form>
+{% endblock %}

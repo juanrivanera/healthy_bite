@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="two-columns">
+    <div class="card">
+        <div class="section-title">Iniciar sesión (Nutricionista)</div>
+        <div class="form-card">
+            <form method="post">
+                <label>
+                    Email:
+                    <input type="email" name="email" required>
+                </label>
+
+                <label>
+                    Contraseña:
+                    <input type="password" name="password" required>
+                </label>
+
+                <button type="submit">INGRESAR</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">Registrarse</div>
+        <div class="form-card">
+            <form method="post" action="{{ url_for('auth.registro_nutricionista') }}">
+                <label>
+                    Nombre:
+                    <input type="text" name="nombre" required>
+                </label>
+
+                <label>
+                    Email:
+                    <input type="email" name="email" required>
+                </label>
+
+                <label>
+                    Contraseña:
+                    <input type="password" name="password" required>
+                </label>
+
+                <label>
+                    Matrícula:
+                    <input type="text" name="matricula" required>
+                </label>
+
+                <button type="submit">REGISTRARSE</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

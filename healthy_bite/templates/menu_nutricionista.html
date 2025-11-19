@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="section-title">Menú Nutricionista</div>
+    <p>Hola, {{ session.get('nutricionista_nombre') }}.</p>
+
+    <div class="two-columns">
+        <div class="form-card">
+            <h3>Pacientes</h3>
+            <p>Ver la información de los clientes y cargar recomendaciones personalizadas.</p>
+            <p>
+                <a href="{{ url_for('nutricionistas.info_clientes') }}" class="button">
+                    Ver información de clientes
+                </a>
+            </p>
+        </div>
+
+        <div class="form-card">
+            <h3>Gestión de pedidos y planes</h3>
+            <p>Revisar pedidos y administrar la oferta de platos y planes.</p>
+            <p>
+                <a href="{{ url_for('nutricionistas.pedidos_nutricionista') }}" class="button">
+                    Ver pedidos
+                </a>
+            </p>
+            <p>
+                <a href="{{ url_for('nutricionistas.gestion_platos') }}" class="button">
+                    Gestionar platos
+                </a>
+            </p>
+            <p>
+                <a href="{{ url_for('nutricionistas.gestion_planes') }}" class="button">
+                    Gestionar planes
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

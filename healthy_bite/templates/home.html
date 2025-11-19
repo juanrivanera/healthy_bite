@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="hero-banner"></div>
+
+<div class="card home-card">
+
+    <p class="home-intro">
+        Plataforma de pedidos de comida saludable pensada para clientes y nutricionistas.
+    </p>
+
+    <div class="section-title">Planes</div>
+
+    <div class="planes-row">
+        {% for p in planes %}
+            <div class="plan-card">
+                <h3>{{ p.nombre }}</h3>
+                <p class="plan-price">${{ "%.2f"|format(p.precio or 0) }}</p>
+                <p class="plan-desc">{{ p.descripcion }}</p>
+
+                {% if session.get('tipo') == 'cliente' %}
+                    <a href="{{ url_for('clientes.elegir_plan', plan_id=p.id) }}" class="button small-btn">
+                        Elegir plan
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('auth.login_cliente') }}" class="button small-btn">
+                        Elegir plan
+                    </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

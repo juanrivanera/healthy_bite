@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="section-title">Pedidos de clientes</div>
+
+    {% if pedidos %}
+        <table class="table-like">
+            <tr>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Plato</th>
+                <th>Restricción</th>
+                <th>Comentarios</th>
+                <th>Estado</th>
+                <th>Acción</th>
+            </tr>
+            {% for p in pedidos %}
+                <tr>
+                    <td>{{ p.fecha }}</td>
+                    <td>{{ p.cliente }}</td>
+                    <td>{{ p.plato }}</td>
+                    <td>{{ p.restriccion or "-" }}</td>
+                    <td>{{ p.comentarios or "-" }}</td>
+                    <td>{{ p.estado }}</td>
+                    <td>
+                        {% if p.estado != 'Validado' %}
+                            <form method="post" style="margin:0;">
+                                <input type="hidden" name="pedido_id" value="{{ p.id }}">
+                                <button type="submit">Validar</button>
+                            </form>
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay pedidos registrados.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
