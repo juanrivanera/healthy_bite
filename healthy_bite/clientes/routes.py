@@ -76,7 +76,6 @@ def menu_cliente():
         conn.commit()
         flash("Datos actualizados correctamente.")
 
-    # Traemos los datos del cliente (incluyendo nombre, mail, disciplina y plan)
     cur.execute(
         """
         SELECT c.id,
