@@ -1,13 +1,15 @@
-from flask import Flask
 import os
+from flask import Flask
+from dotenv import load_dotenv
 
 from .db import init_db
 
-
 def create_app():
+    load_dotenv()
+
     app = Flask(__name__)
 
-    app.config["SECRET_KEY"] = "hb2025"
+    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "dev-secret")
 
     from .main.routes import main_bp
     from .auth.routes import auth_bp
