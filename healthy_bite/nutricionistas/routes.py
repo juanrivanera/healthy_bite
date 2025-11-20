@@ -25,10 +25,6 @@ def menu_nutricionista():
 
 @nutricionistas_bp.route("/gestion_platos", methods=["GET", "POST"])
 def gestion_platos():
-    """
-    Vista para EDITAR platos existentes.
-    NO crea platos nuevos, solo actualiza nombre y descripción.
-    """
     if session.get("tipo") != "nutricionista":
         flash("Solo los nutricionistas pueden gestionar los platos.")
         return redirect(url_for("main.home"))
@@ -100,10 +96,6 @@ def gestion_planes():
 
 @nutricionistas_bp.route("/pedidos_nutricionista", methods=["GET", "POST"])
 def pedidos_nutricionista():
-    """
-    Vista para ver y VALIDAR pedidos.
-    El botón "Validar" marca el pedido como 'Validado'.
-    """
     if session.get("tipo") != "nutricionista":
         flash("Solo los nutricionistas pueden ver los pedidos.")
         return redirect(url_for("main.home"))
@@ -215,7 +207,6 @@ def recomendar(cliente_id):
             conn.commit()
             flash("Recomendación creada correctamente.")
             conn.close()
-            # Cambio acá: volvemos al menú del nutricionista
             return redirect(url_for("nutricionistas.menu_nutricionista"))
 
     cur.execute("SELECT nombre FROM cliente WHERE id = ?", (cliente_id,))
