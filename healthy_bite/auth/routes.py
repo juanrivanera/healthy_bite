@@ -3,7 +3,7 @@ import requests
 from google_auth_oauthlib.flow import Flow
 import sqlite3
 
-from dotenv import load_dotenv  # ✅ NUEVO
+from dotenv import load_dotenv 
 
 from flask import (
     Blueprint,
@@ -16,7 +16,6 @@ from flask import (
 )
 from healthy_bite.db import get_db
 
-# ✅ CARGAMOS LAS VARIABLES DEL .env
 load_dotenv()
 
 auth_bp = Blueprint("auth", __name__)
@@ -203,7 +202,6 @@ def login_nutricionista():
 
 @auth_bp.route("/login_google")
 def login_google():
-    # Solo local / desarrollo
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
     flow = _get_google_flow()
